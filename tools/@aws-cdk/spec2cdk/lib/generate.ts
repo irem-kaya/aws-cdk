@@ -285,7 +285,10 @@ function grantsConfigForModule(moduleName: string, modulePath: string, isStable:
   };
 
   const actualModuleName = grantsJsonPathOverrides[moduleName] || moduleName;
-  const grantsFileLocation = isStable ? path.join(modulePath, actualModuleName) : path.join(modulePath, '..', `${actualModuleName}-alpha`);
+  const grantsFileLocation = isStable 
+    ? path.join(modulePath, actualModuleName) 
+    : path.join(modulePath, '..', actualModuleName);
+    
   const config = readGrantsConfig(grantsFileLocation);
   return config == null ? undefined : config;
 }
